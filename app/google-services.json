@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "201113848275",
+    "project_id": "do-it-74a36",
+    "storage_bucket": "do-it-74a36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201113848275:android:8173fe60550fd66ac04726",
+        "android_client_info": {
+          "package_name": "com.do_it.do_it"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk3ghBThJ9SYgz_-6URdYwPP6XCieOBy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
