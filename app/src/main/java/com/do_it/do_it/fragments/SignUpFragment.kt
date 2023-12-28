@@ -43,23 +43,31 @@ class SignUpFragment : Fragment() {
         binding.signInTextView.setOnClickListener{
             navControl.navigate(R.id.action_signUpFragment_to_signInFragment)
         }
+        var n = 1
         binding.nextButton.setOnClickListener{
-            val email = binding.emailEditText.toString()
-            val pass = binding.passEditText.toString()
-            val verifyPass = binding.repassEditText.toString()
+            val email = binding.emailEditText.text.toString().trim()
+            val pass = binding.passEditText.text.toString().trim()
+            val verifyPass = binding.repassEditText.text.toString().trim()
+
+//            Toast.makeText(context, "Click" + n, Toast.LENGTH_SHORT)
+//                .show()
+//            n+=1
 
             if(email.isNotEmpty() && pass.isNotEmpty() && verifyPass.isNotEmpty()){
                 if(pass == verifyPass){
-                    auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener ({
+                    auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT)
                                 .show()
-                            navControl.navigate(R.id.action_signInFragment_to_homeFragment)
+                            navControl.navigate(R.id.action_signUpFragment_to_homeFragment)
                         } else {
                             Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT)
                                 .show()
                         }
-                    })
+                    }
+                }else{
+                    Toast.makeText(context, "Password and Verify Password do not match", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
