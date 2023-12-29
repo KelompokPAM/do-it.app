@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import com.do_it.do_it.R
 import com.do_it.do_it.databinding.FragmentSignInBinding
 import com.do_it.do_it.databinding.FragmentSignUpBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInFragment : Fragment() {
@@ -42,11 +43,12 @@ class SignInFragment : Fragment() {
             navControl.navigate(R.id.action_signInFragment_to_signUpFragment)
         }
         binding.nextButton.setOnClickListener{
-            val email = binding.emailEditText.toString().trim()
-            val pass = binding.passEditText.toString().trim()
+            val email = binding.emailEditText.text.toString().trim()
+            val pass = binding.passEditText.text.toString().trim()
 
             if(email.isNotEmpty() && pass.isNotEmpty()){
-                    auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener({
+                    auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(
+                        OnCompleteListener{
                         if(it.isSuccessful){
                             Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
                             navControl.navigate(R.id.action_signInFragment_to_homeFragment)

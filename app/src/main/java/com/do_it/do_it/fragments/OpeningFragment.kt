@@ -29,7 +29,7 @@ class OpeningFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         navController = Navigation.findNavController(view)
 
-        Handler(Looper.myLooper()!!).postDelayed({
+        Handler(Looper.myLooper()!!).postDelayed(Runnable{
             if(auth.currentUser != null){
                 navController.navigate(R.id.action_openingFragment_to_homeFragment)
             }else{
