@@ -46,17 +46,19 @@ class SignInFragment : Fragment() {
             val email = binding.emailEditText.text.toString().trim()
             val pass = binding.passEditText.text.toString().trim()
 
-            if(email.isNotEmpty() && pass.isNotEmpty()){
-                    auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(
-                        OnCompleteListener{
-                        if(it.isSuccessful){
+            if(email.isNotEmpty() && pass.isNotEmpty(){
+                    auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+                        if (it.isSuccessful) {
                             Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
                             navControl.navigate(R.id.action_signInFragment_to_homeFragment)
-                        }else{
-                            Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
-                    )
+            }else{
+                Toast.makeText(context, "Failed Login, Check Email or Password", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
