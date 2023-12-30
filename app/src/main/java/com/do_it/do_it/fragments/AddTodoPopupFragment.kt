@@ -38,6 +38,7 @@ class AddTodoPopupFragment : DialogFragment() {
         binding.todoNextBtn.setOnClickListener{
             val todoTask = binding.todoEt.text.toString()
             if (todoTask.isNotEmpty()){
+                Toast.makeText(context, "Its working", Toast.LENGTH_SHORT)
                 listener.onSaveTask(todoTask, binding.todoEt)
             }else {
                 Toast.makeText(context, "Write your tasks", Toast.LENGTH_SHORT).show()
