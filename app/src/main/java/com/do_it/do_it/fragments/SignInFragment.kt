@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import com.do_it.do_it.R
 import com.do_it.do_it.databinding.FragmentSignInBinding
 import com.do_it.do_it.databinding.FragmentSignUpBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInFragment : Fragment() {
@@ -45,7 +46,7 @@ class SignInFragment : Fragment() {
             val email = binding.emailEditText.text.toString().trim()
             val pass = binding.passEditText.text.toString().trim()
 
-            if(email.isNotEmpty() && pass.isNotEmpty()){
+            if(email.isNotEmpty() && pass.isNotEmpty(){
                     auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
