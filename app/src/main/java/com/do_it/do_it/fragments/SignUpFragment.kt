@@ -43,15 +43,11 @@ class SignUpFragment : Fragment() {
         binding.signInTextView.setOnClickListener{
             navControl.navigate(R.id.action_signUpFragment_to_signInFragment)
         }
-        var n = 1
         binding.nextButton.setOnClickListener{
             val email = binding.emailEditText.text.toString().trim()
             val pass = binding.passEditText.text.toString().trim()
             val verifyPass = binding.repassEditText.text.toString().trim()
 
-//            Toast.makeText(context, "Click" + n, Toast.LENGTH_SHORT)
-//                .show()
-//            n+=1
 
             if(email.isNotEmpty() && pass.isNotEmpty() && verifyPass.isNotEmpty()){
                 if(pass == verifyPass){
