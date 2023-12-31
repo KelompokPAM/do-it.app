@@ -28,7 +28,7 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
     private lateinit var databaseRef: DatabaseReference
     private lateinit var navControl: NavController
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var popupFragment: AddTodoPopupFragment
+    private var popupFragment: AddTodoPopupFragment? = null
     private lateinit var adapter: ToAdapter
     private lateinit var mlist: MutableList<ToData>
 
@@ -49,12 +49,15 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
     }
 
     private fun registerEvent() {
+        if(popupFragment != null){
+            childFragmentManager.beginTransaction().remove(popupFragment!!).commit()
+        }
         binding.addBtnHome.setOnClickListener {
             popupFragment = AddTodoPopupFragment()
-            popupFragment.setListener(this)
-            popupFragment.show(
+            popupFragment!!.setListener(this)
+            popupFragment!!.show(
                 childFragmentManager,
-                "AddTodoPopupFragment"
+                AddTodoPopupFragment.TAG
             )
         }
     }
@@ -78,7 +81,7 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
                 mlist.clear()
                 for (taskSnapshot in snapshot.children) {
                     val todoTask = taskSnapshot.key?.let {
-                        ToData(it, taskSnapshot.child("title").getValue(String::class.java).toString())
+                        ToData(it, taskSnapshot.child("title").getValue(String::class.java).toString(), taskSnapshot.child("task").getValue(String::class.java).toString())
                     }
                     if (todoTask != null) {
                         mlist.add(todoTask)
@@ -106,7 +109,7 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
                 Log.d("Firebase", "Failed to save Task")
                 Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
             }
-            popupFragment.dismiss()
+            popupFragment!!.dismiss()
         }
     }
 
@@ -121,6 +124,32 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
     }
 
     override fun onEditTaskBtnClicked(toDoData: ToData) {
-        // Implement edit functionality here if needed
+        if(popupFragment != null){
+            childFragmentManager.beginTransaction().remove(popupFragment!!).commit()
+        }
+        popupFragment = AddTodoPopupFragment.newInstance(toDoData.taskId, toDoData.title, toDoData.task)
+        popupFragment!!.setListener(this)
+        popupFragment!!.show(childFragmentManager, AddTodoPopupFragment.TAG)
+    }
+
+    override fun onUpdateTask(
+        toData: ToData,
+        todo: String,title:String,
+        todoEt1: TextInputEditText,
+        todoEt2: TextInputEditText
+    ) {
+
+        val taskData = mapOf("title" to title, "task" to todo)
+        databaseRef.child(toData.taskId).updateChildren(taskData).addOnCompleteListener {
+            if(it.isSuccessful){
+                Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show()
+
+            }else{
+                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+            todoEt1.text = null
+            todoEt2.text = null
+            popupFragment!!.dismiss()
+        }
     }
 }

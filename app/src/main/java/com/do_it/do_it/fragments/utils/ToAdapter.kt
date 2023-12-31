@@ -25,7 +25,7 @@ class ToAdapter(private val list:MutableList<ToData>):
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         with(holder) {
             with(list[position]) {
-                binding.taskText.text = this.task
+                binding.taskText.text = this.title
                 binding.deleteTask.setOnClickListener {
                     listener?.onDeleteTaskBtnClicked(this)
                 }
