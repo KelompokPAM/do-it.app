@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="|"
-        android:textSize="110sp"
+        android:textSize="125sp"
         android:layout_marginLeft="115sp"
         android:textColor="#DEB81B1B"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,22 +21,34 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
         />
 
-    <TextView
+    <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGO"
-        android:textSize="50sp"
-        android:textFontWeight="700"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/doit"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
+        />
+<!--    <TextView-->
+<!--        android:id="@+id/logo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="LOGO"-->
+<!--        android:textSize="50sp"-->
+<!--        android:textFontWeight="700"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"/>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WELCOME"
         android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="75dp"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

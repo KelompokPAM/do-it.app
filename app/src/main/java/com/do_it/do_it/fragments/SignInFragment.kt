@@ -46,7 +46,7 @@ class SignInFragment : Fragment() {
             val email = binding.emailEditText.text.toString().trim()
             val pass = binding.passEditText.text.toString().trim()
 
-            if(email.isNotEmpty() && pass.isNotEmpty(){
+            if(email.isNotEmpty() && pass.isNotEmpty()){
                     auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()

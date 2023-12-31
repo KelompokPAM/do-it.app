@@ -168,11 +168,11 @@
 
     <LinearLayout
         android:id="@+id/nextButton"
-        android:layout_width="75dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@drawable/rectangle_rounded"
-        android:backgroundTint="#1D97CB"
+        android:backgroundTint="#FF2196F3"
         app:layout_constraintTop_toBottomOf="@id/card3"
         app:layout_constraintRight_toRightOf="@id/card3">
 

@@ -1,14 +1,13 @@
 package com.do_it.do_it.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.do_it.do_it.R
 import com.do_it.do_it.databinding.FragmentAddTodoPopupBinding
+import com.do_it.do_it.fragments.utils.ToData
 import com.google.android.material.textfield.TextInputEditText
 
 class AddTodoPopupFragment : DialogFragment() {
@@ -36,12 +35,13 @@ class AddTodoPopupFragment : DialogFragment() {
 
     private fun registerEvent(){
         binding.todoNextBtn.setOnClickListener{
-            val todoTask = binding.todoEt.text.toString()
+            val titleTask = binding.todoEt1.text.toString()
+            val todoTask = binding.todoEt2.text.toString()
+
             if (todoTask.isNotEmpty()){
-                Toast.makeText(context, "Its working", Toast.LENGTH_SHORT)
-                listener.onSaveTask(todoTask, binding.todoEt)
+                listener?.onSaveTask(todoTask, titleTask, binding.todoEt1, binding.todoEt2)
             }else {
-                Toast.makeText(context, "Write your tasks", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Failed, Write your tasks", Toast.LENGTH_SHORT).show()
             }
         }
         binding.todoClose.setOnClickListener{
@@ -50,7 +50,9 @@ class AddTodoPopupFragment : DialogFragment() {
     }
 
     interface DialogNextButtonClickListeners{
-        fun onSaveTask(todo: String, todoEt: TextInputEditText)
+        fun onSaveTask(todo: String,title:String, todoEt1: TextInputEditText, todoEt2: TextInputEditText)
+        fun onDeleteTaskBtnClicked(toDoData: ToData)
+        fun onEditTaskBtnClicked(toDoData: ToData)
     }
 
 }

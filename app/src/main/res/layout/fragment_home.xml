@@ -19,4 +19,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recylerView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toTopOf="@id/addBtnHome"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
