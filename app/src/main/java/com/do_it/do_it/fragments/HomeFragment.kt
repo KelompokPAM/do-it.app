@@ -81,7 +81,9 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
                 mlist.clear()
                 for (taskSnapshot in snapshot.children) {
                     val todoTask = taskSnapshot.key?.let {
-                        ToData(it, taskSnapshot.child("title").getValue(String::class.java).toString(), taskSnapshot.child("task").getValue(String::class.java).toString())
+                        ToData(it,
+                            taskSnapshot.child("title").getValue(String::class.java).toString(),
+                            taskSnapshot.child("task").getValue(String::class.java).toString())
                     }
                     if (todoTask != null) {
                         mlist.add(todoTask)
@@ -98,7 +100,8 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
     }
 
     override fun onSaveTask(todo: String, title:String, todoEt1: TextInputEditText, todoEt2: TextInputEditText) {
-        val taskData = mapOf("title" to title, "task" to todo)
+        val timestamp = System.currentTimeMillis()
+        val taskData = mapOf("title" to title, "task" to todo, "createdTime" to timestamp)
         databaseRef.push().setValue(taskData).addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d("Firebase", "Task saved successfully")

@@ -65,7 +65,10 @@
                 android:layout_height="50dp"
                 android:background="@color/white"
                 android:hint="Type your task..."
-                android:inputType="text"
+                android:inputType="textMultiLine|text"
+                android:lines="3"
+                android:minLines="1"
+                android:gravity="top"
                 android:paddingStart="12dp"
                 android:paddingTop="15dp" />
         </com.google.android.material.textfield.TextInputLayout>
