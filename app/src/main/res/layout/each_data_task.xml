@@ -20,6 +20,13 @@
             android:text="aoskdpaoksd"
             android:textSize="17sp"
             app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/taskDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="task description"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/taskText"/>
         <ImageView
             android:id="@+id/deleteTask"
             android:layout_width="wrap_content"

@@ -45,7 +45,9 @@ class AddTodoPopupFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if(arguments != null){
-            toData = ToData(arguments?.getString("taskId").toString(), arguments?.getString("title").toString(), arguments?.getString("task").toString())
+            toData = ToData(arguments?.getString("taskId").toString(),
+                arguments?.getString("title").toString(),
+                arguments?.getString("task").toString())
             binding.todoEt1.setText(toData?.title)
             binding.todoEt2.setText(toData?.task)
         }
