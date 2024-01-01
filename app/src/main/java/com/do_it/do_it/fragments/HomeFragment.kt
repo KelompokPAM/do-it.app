@@ -1,15 +1,19 @@
 package com.do_it.do_it.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.do_it.do_it.R
 import com.do_it.do_it.databinding.FragmentHomeBinding
 import com.do_it.do_it.fragments.utils.ToAdapter
 import com.do_it.do_it.fragments.utils.ToData
@@ -47,6 +51,10 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
         init(view)
         getDataFromFirebase()
         registerEvent()
+        // Menangkap event tombol kembali
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            showLogoutConfirmationDialog()
+        }
     }
 
     private fun registerEvent() {
@@ -178,5 +186,22 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
             todoEt2.text = null
             popupFragment!!.dismiss()
         }
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Logout Confirmation")
+        builder.setMessage("Are you sure you want to logout?")
+        builder.setPositiveButton("Yes") { _, _ ->
+            handleLogout()
+        }
+        builder.setNegativeButton("No") { _, _ ->
+            //nothing
+        }
+        builder.show()
+    }
+    private fun handleLogout() {
+        auth.signOut()
+        navControl.navigate(R.id.action_homeFragment_to_signInFragment)
     }
 }

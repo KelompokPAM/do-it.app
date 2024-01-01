@@ -27,6 +27,7 @@
         android:text="Task List"
         android:textStyle="bold"
         android:textSize="32dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/recylerView"
         app:layout_constraintStart_toStartOf="parent" />
 
