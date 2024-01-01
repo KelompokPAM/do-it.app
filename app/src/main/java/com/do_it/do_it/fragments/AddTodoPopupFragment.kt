@@ -23,11 +23,12 @@ class AddTodoPopupFragment : DialogFragment() {
     companion object{
         const val TAG = "AddToDoPopupFragment"
         @JvmStatic
-        fun newInstance(taskId: String, title: String, task: String) = AddTodoPopupFragment().apply {
+        fun newInstance(taskId: String, title: String, task: String, date: String) = AddTodoPopupFragment().apply {
             arguments = Bundle().apply {
                 putString("taskId", taskId)
                 putString("title", title)
                 putString("task", task)
+                putString("date", date)
             }
         }
 
@@ -43,13 +44,17 @@ class AddTodoPopupFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if(arguments != null){
-            toData = ToData(arguments?.getString("taskId").toString(),
+        if (arguments != null) {
+            toData = ToData(
+                arguments?.getString("taskId").toString(),
                 arguments?.getString("title").toString(),
-                arguments?.getString("task").toString())
+                arguments?.getString("task").toString(),
+                arguments?.getString("date")?:"DATE NOW"
+
+            )
             binding.todoEt1.setText(toData?.title)
             binding.todoEt2.setText(toData?.task)
+            binding.dateText.setText(toData?.date)
         }
         registerEvent()
     }

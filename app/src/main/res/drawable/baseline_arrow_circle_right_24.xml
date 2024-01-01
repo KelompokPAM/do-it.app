@@ -1,5 +1,24 @@
-<vector android:height="24dp" android:tint="#0C6FD9"
-    android:viewportHeight="24" android:viewportWidth="24"
-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="@android:color/white" android:pathData="M22,12c0,-5.52 -4.48,-10 -10,-10S2,6.48 2,12c0,5.52 4.48,10 10,10S22,17.52 22,12zM12,13l-4,0v-2l4,0V8l4,4l-4,4V13z"/>
-</vector>
+<!--<vector android:height="24dp" android:tint="#0C6FD9"-->
+<!--    android:viewportHeight="24" android:viewportWidth="24"-->
+<!--    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <path android:fillColor="@android:color/white" android:pathData="M22,12c0,-5.52 -4.48,-10 -10,-10S2,6.48 2,12c0,5.52 4.48,10 10,10S22,17.52 22,12zM12,13l-4,0v-2l4,0V8l4,4l-4,4V13z"/>-->
+<!--</vector>-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- State when button is pressed -->
+    <item android:state_pressed="true">
+        <vector android:height="24dp" android:tint="#7CD1F6"
+            android:viewportHeight="24" android:viewportWidth="24"
+            android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+            <path android:fillColor="@android:color/white" android:pathData="M22,12c0,-5.52 -4.48,-10 -10,-10S2,6.48 2,12c0,5.52 4.48,10 10,10S22,17.52 22,12zM12,13l-4,0v-2l4,0V8l4,4l-4,4V13z"/>
+        </vector>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <vector android:height="24dp" android:tint="#FF2196F3"
+            android:viewportHeight="24" android:viewportWidth="24"
+            android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+            <path android:fillColor="@android:color/white" android:pathData="M22,12c0,-5.52 -4.48,-10 -10,-10S2,6.48 2,12c0,5.52 4.48,10 10,10S22,17.52 22,12zM12,13l-4,0v-2l4,0V8l4,4l-4,4V13z"/>
+        </vector>
+    </item>
+</selector>

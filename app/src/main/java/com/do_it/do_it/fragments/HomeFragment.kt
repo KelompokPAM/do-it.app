@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.Calendar
 
 class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListeners,
     ToAdapter.ToAdapterClicksInterface {
@@ -80,10 +81,14 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
             override fun onDataChange(snapshot: DataSnapshot) {
                 mlist.clear()
                 for (taskSnapshot in snapshot.children) {
+                    val updatedTime = taskSnapshot.child("updatedTime").getValue(String::class.java)
+                    val createdTime = taskSnapshot.child("createdTime").getValue(String::class.java)
                     val todoTask = taskSnapshot.key?.let {
                         ToData(it,
                             taskSnapshot.child("title").getValue(String::class.java).toString(),
-                            taskSnapshot.child("task").getValue(String::class.java).toString())
+                            taskSnapshot.child("task").getValue(String::class.java).toString(),
+                            (updatedTime?:createdTime).toString()
+                        )
                     }
                     if (todoTask != null) {
                         mlist.add(todoTask)
@@ -99,9 +104,28 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
         })
     }
 
+    private fun dateNow(): String {
+        val currentCalendar = Calendar.getInstance()
+        val year = currentCalendar.get(Calendar.YEAR)
+        val month =
+            currentCalendar.get(Calendar.MONTH) + 1  // Perhatikan bahwa bulan dimulai dari 0
+        val day = currentCalendar.get(Calendar.DAY_OF_MONTH)
+        val hour = currentCalendar.get(Calendar.HOUR_OF_DAY)
+        val minute = currentCalendar.get(Calendar.MINUTE)
+        val second = currentCalendar.get(Calendar.SECOND)
+        return String.format(
+            "%04d-%02d-%02d %02d:%02d:%02d",
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second
+        )
+    }
     override fun onSaveTask(todo: String, title:String, todoEt1: TextInputEditText, todoEt2: TextInputEditText) {
-        val timestamp = System.currentTimeMillis()
-        val taskData = mapOf("title" to title, "task" to todo, "createdTime" to timestamp)
+
+        val taskData = mapOf("title" to title, "task" to todo, "createdTime" to dateNow())
         databaseRef.push().setValue(taskData).addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d("Firebase", "Task saved successfully")
@@ -130,7 +154,7 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
         if(popupFragment != null){
             childFragmentManager.beginTransaction().remove(popupFragment!!).commit()
         }
-        popupFragment = AddTodoPopupFragment.newInstance(toDoData.taskId, toDoData.title, toDoData.task)
+        popupFragment = AddTodoPopupFragment.newInstance(toDoData.taskId, toDoData.title, toDoData.task, toDoData.date)
         popupFragment!!.setListener(this)
         popupFragment!!.show(childFragmentManager, AddTodoPopupFragment.TAG)
     }
@@ -142,7 +166,7 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogNextButtonClickListe
         todoEt2: TextInputEditText
     ) {
 
-        val taskData = mapOf("title" to title, "task" to todo)
+        val taskData = mapOf("title" to title, "task" to todo, "updatedTime" to dateNow() )
         databaseRef.child(toData.taskId).updateChildren(taskData).addOnCompleteListener {
             if(it.isSuccessful){
                 Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show()

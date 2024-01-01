@@ -27,6 +27,7 @@ class ToAdapter(private val list:MutableList<ToData>):
             with(list[position]) {
                 binding.taskText.text = this.title
                 binding.taskDescription.text = this.task
+                binding.timeStamp.text = this.date
                 binding.deleteTask.setOnClickListener {
                     listener?.onDeleteTaskBtnClicked(this)
                 }

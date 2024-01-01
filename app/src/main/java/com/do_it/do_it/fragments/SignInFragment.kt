@@ -10,8 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.do_it.do_it.R
 import com.do_it.do_it.databinding.FragmentSignInBinding
-import com.do_it.do_it.databinding.FragmentSignUpBinding
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInFragment : Fragment() {

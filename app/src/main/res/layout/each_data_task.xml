@@ -15,18 +15,40 @@
 
         <TextView
             android:id="@+id/taskText"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="aoskdpaoksd"
-            android:textSize="17sp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_width="wrap_content"
+            android:text="TITLE"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/divider"
+            app:layout_constraintTop_toBottomOf="@id/taskText"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/taskDescription"/>
         <TextView
             android:id="@+id/taskDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="task description"
+            android:layout_marginTop="5dp"
+            android:text="TASK DESCRIPTION"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/divider"/>
+        <TextView
+            android:id="@+id/timeStamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="TIMESTAMPS"
+            android:gravity="end"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/taskText"/>
+            app:layout_constraintTop_toBottomOf="@id/taskDescription"/>
         <ImageView
             android:id="@+id/deleteTask"
             android:layout_width="wrap_content"
