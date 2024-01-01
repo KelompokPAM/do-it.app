@@ -54,7 +54,7 @@ class AddTodoPopupFragment : DialogFragment() {
             )
             binding.todoEt1.setText(toData?.title)
             binding.todoEt2.setText(toData?.task)
-            binding.dateText.setText(toData?.date)
+            binding.dateText.text = toData?.date
         }
         registerEvent()
     }

@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<shape xmlns:android="http://schemas.android.com/apk/res/android">-->
-<!--    <corners android:radius="10dp" /> &lt;!&ndash; Ubah nilai radius sesuai keinginan Anda &ndash;&gt;&lt;!&ndash; Warna latar belakang &ndash;&gt;-->
-<!--</shape>-->
-<!-- res/drawable/background_button.xml -->
-
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- State when button is pressed -->
     <item android:state_pressed="true">
