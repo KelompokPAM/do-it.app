@@ -50,7 +50,7 @@ class SignInFragment : Fragment() {
                             Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
                             navControl.navigate(R.id.action_signInFragment_to_homeFragment)
                         } else {
-                            Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT)
+                            Toast.makeText(requireActivity(), "Failed Login, Check Email or Password", Toast.LENGTH_SHORT)
                                 .show()
                         }
                     }
